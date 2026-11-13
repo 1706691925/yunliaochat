@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2026 夜屿
-# Yunliao (云聊) is licensed under Mulan PSL v2.
-# You can use this software according to the terms and conditions of the Mulan PSL v2.
-# You may obtain a copy of Mulan PSL v2 at:
-#          http://license.coscl.org.cn/MulanPSL2
-# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
-# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
-# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
-# See the Mulan PSL v2 for more details.
+# Yunliao (云聊) - LAN collaboration platform
+# Copyright (C) 2026 夜屿
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """仓库自检脚本（CI 与本地通用，只依赖标准库）
 
 用法：
@@ -116,41 +122,60 @@ def check_repo_hygiene():
 
 
 def check_license():
-    """许可证必须存在且是木兰宽松许可证第 2 版。
+    """许可证必须存在且是 GNU AGPL-3.0。
 
     许可证文件属于易被误删/误改的内容（例如重新初始化仓库、
     或换成别的协议后忘记同步 README 里的声明），因此单列一项检查。
+    这里同时校验「许可证原文」与「源文件版权头」两处，避免只改一处。
     """
     lic = ROOT / "LICENSE"
     if not lic.is_file():
         print("[4/5] 许可证：缺少 LICENSE 文件")
         return False
     txt = lic.read_text(encoding="utf-8", errors="replace")
-    required = ("木兰宽松许可证", "Mulan Permissive Software License",
-                "license.coscl.org.cn/MulanPSL2")
+    required = (
+        "GNU AFFERO GENERAL PUBLIC LICENSE",
+        "Version 3, 19 November 2007",
+        # 第 13 条是 AGPL 与 GPL 的核心差异（网络交互也要开源）
+        "13. Remote Network Interaction",
+        "END OF TERMS AND CONDITIONS",
+    )
     missing = [k for k in required if k not in txt]
     if missing:
-        print("[4/5] 许可证：LICENSE 不是完整的木兰宽松许可证第 2 版，缺少：%s"
+        print("[4/5] 许可证：LICENSE 不是完整的 AGPL-3.0，缺少：%s"
               % "、".join(missing))
         return False
-    # 文件顶部应有具体的版权声明（而不是仍然留着 [Year] 之类的模板占位符）
-    head = txt[:400]
-    if "[Year]" in head or "[name of copyright holder]" in head:
-        print("[4/5] 许可证：LICENSE 顶部仍是未填写的模板占位符，"
-              "请填入实际年份与版权所有者")
+    # 顶部应是我们自己的版权声明（AGPL 附录模板里的 <one line to give ...> 未填则为错）
+    head = txt[:600]
+    if "Copyright (C) 2026" not in head:
+        print("[4/5] 许可证：LICENSE 顶部缺少本项目 Copyright 版权声明")
         return False
-    if "Copyright (c)" not in head:
-        print("[4/5] 许可证：LICENSE 顶部缺少 Copyright 版权声明")
-        return False
-    # README 里的许可证声明也应同步，避免自相矛盾
+
+    # README 里的许可证声明必须同步，否则自相矛盾
     for name in ("README.md", "README.en.md"):
         rd = ROOT / name
         if rd.is_file():
             rtxt = rd.read_text(encoding="utf-8", errors="replace")
-            if "Mulan" not in rtxt:
-                print("[4/5] 许可证：%s 未声明 Mulan PSL v2" % name)
+            if "AGPL" not in rtxt:
+                print("[4/5] 许可证：%s 未声明 AGPL" % name)
                 return False
-    print("[4/5] 许可证：通过（Mulan PSL v2）")
+
+    # 源文件版权头抽查：任意一个 .py 仍写别的协议，说明替换不彻底
+    stale = []
+    for p in ROOT.rglob("*.py"):
+        if set(p.parts) & {"vendor", "build", "dist", "__pycache__"}:
+            continue
+        head = p.read_text(encoding="utf-8-sig", errors="replace")[:800]
+        if "GNU Affero General Public License" not in head:
+            stale.append(p.relative_to(ROOT).as_posix())
+    if stale:
+        print("[4/5] 许可证：以下源文件缺少 AGPL 版权头（共 %d 个）："
+              % len(stale))
+        for s in stale[:10]:
+            print("      " + s)
+        return False
+
+    print("[4/5] 许可证：通过（AGPL-3.0，含源文件版权头）")
     return True
 
 

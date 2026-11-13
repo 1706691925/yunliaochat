@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-3776ab?logo=python&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/License-MulanPSL--2.0-blue">
+  <img alt="License" src="https://img.shields.io/badge/License-AGPL--3.0-blue">
   <img alt="Deps" src="https://img.shields.io/badge/runtime%20deps-zero-brightgreen">
   <img alt="DB" src="https://img.shields.io/badge/DB-SQLite%20%7C%20MySQL-blue">
   <img alt="Release" src="https://img.shields.io/github/v/tag/1706691925/yunliaochat?label=release">
@@ -255,11 +255,21 @@ pyinstaller build.spec
 
 ## 许可证
 
-[木兰宽松许可证，第 2 版（Mulan PSL v2）](LICENSE) —— 可自由商用、修改、闭源分发，
-保留版权声明与许可证副本即可；同时授予专利许可。
+[GNU AGPL-3.0](LICENSE) —— 一款 **OSI 认证的强著佐权（copyleft）开源协议**。
 
-> 该协议由「中国开源云联盟」制定，中英文双语、以中文版为准，
-> 是国内首个由本土主导的开源许可证，并被 OSI 认证。
+**你可以**：自由使用、修改、分发，包括用于商业目的、闭源部署在自己的服务器上。
+
+**你需要**：如果你**修改了云聊**并把它作为**网络服务**提供给他人使用
+（例如部署成内网系统让同事访问），必须向这些使用者提供修改后的完整源码。
+
+> 这就是 AGPL 与 GPL 的唯一实质区别：**第 13 条「远程网络交互」**。
+> 传统 GPL 只在「分发软件」时触发开源义务，而云聊是 B/S 架构——
+> 用户从不下载程序，只是访问网页，GPL 因此形同虚设。AGPL 补上了这个口子。
+
+**如果你只是原样部署、没有修改代码**，则不承担任何开源义务，直接用即可。
+
+> 如果你的组织政策不允许 AGPL（部分企业禁止使用 copyleft 协议），
+> 可联系作者洽谈商业授权。
 
 ## 致谢
 

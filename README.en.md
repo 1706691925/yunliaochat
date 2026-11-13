@@ -7,7 +7,7 @@
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-3776ab?logo=python&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/License-MulanPSL--2.0-blue">
+  <img alt="License" src="https://img.shields.io/badge/License-AGPL--3.0-blue">
   <img alt="Deps" src="https://img.shields.io/badge/runtime%20deps-zero-brightgreen">
   <img alt="DB" src="https://img.shields.io/badge/DB-SQLite%20%7C%20MySQL-blue">
   <img alt="Release" src="https://img.shields.io/github/v/tag/1706691925/yunliaochat?label=release">
@@ -285,13 +285,24 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details (Chinese).
 
 ## License
 
-[Mulan Permissive Software License, Version 2 (Mulan PSL v2)](LICENSE) — free for commercial
-use, modification and closed-source distribution, provided you retain the copyright notice and
-supply recipients with a copy of the license. A patent license is granted as well.
+[GNU AGPL-3.0](LICENSE) — an **OSI-approved, strong-copyleft open-source license**.
 
-> Mulan PSL v2 is a Chinese open-source license authored by the China Open Source Cloud League.
-> It is published in both Chinese and English, with the Chinese version prevailing in case of
-> divergence, and has been approved by the OSI.
+**You may**: use, modify and distribute this software freely, including for commercial
+purposes and in closed-source deployments on your own servers.
+
+**You must**: if you **modify Yunliao** and make it available to others **as a network
+service** (for example, deploy it on your intranet for colleagues), you must offer those users
+the complete source code of your modified version.
+
+> This is the only substantive difference between AGPL and GPL: **Section 13, "Remote Network
+> Interaction"**. Plain GPL only triggers on *distribution* — but Yunliao is a browser/server
+> application, so users never download the program, they just open a web page, and GPL would
+> have no effect. AGPL closes that gap.
+
+**If you deploy it unmodified**, you have no obligation to publish anything.
+
+> If your organization's policy forbids AGPL (some enterprises ban copyleft licenses),
+> a commercial license is available on request.
 
 ## Acknowledgements
 

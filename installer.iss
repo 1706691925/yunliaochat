@@ -1,7 +1,7 @@
 ; 云聊 —— 安装包脚本 (Inno Setup 6)
 #define MyAppName "云聊"
 #define MyAppExeName "云聊-客户端.exe"
-#define MyAppVersion "1.1.2"
+#define MyAppVersion "1.1.3"
 
 [Setup]
 AppId={{171FD3E8-EB45-437D-97EE-4865AEC743B1}
