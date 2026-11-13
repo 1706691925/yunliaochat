@@ -13,6 +13,10 @@
   <img alt="Stars" src="https://img.shields.io/github/stars/1706691925/yunliaochat?style=flat">
 </p>
 
+<p align="center">
+  <b>简体中文</b> · <a href="README.en.md">English</a>
+</p>
+
 ## 界面预览
 
 <p align="center">
@@ -108,7 +112,7 @@ python tools/setup_mysql.py --zip /path/to/mysql-8.0.28-winx64.zip
 
 ```bash
 # 1. 获取代码
-git clone <your-repo-url> yunliao
+git clone https://github.com/1706691925/yunliaochat.git yunliao
 cd yunliao
 
 # 2. 启动（无需 pip install，无需虚拟环境）
