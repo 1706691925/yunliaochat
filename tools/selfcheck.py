@@ -133,6 +133,15 @@ def check_license():
         print("[4/5] 许可证：LICENSE 不是完整的木兰宽松许可证第 2 版，缺少：%s"
               % "、".join(missing))
         return False
+    # 文件顶部应有具体的版权声明（而不是仍然留着 [Year] 之类的模板占位符）
+    head = txt[:400]
+    if "[Year]" in head or "[name of copyright holder]" in head:
+        print("[4/5] 许可证：LICENSE 顶部仍是未填写的模板占位符，"
+              "请填入实际年份与版权所有者")
+        return False
+    if "Copyright (c)" not in head:
+        print("[4/5] 许可证：LICENSE 顶部缺少 Copyright 版权声明")
+        return False
     # README 里的许可证声明也应同步，避免自相矛盾
     for name in ("README.md", "README.en.md"):
         rd = ROOT / name
