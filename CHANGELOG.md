@@ -53,7 +53,7 @@
 - 重写 `README.md`（功能介绍、双数据库对比、快速开始、架构）
 - 新增 `docs/部署指南.md`（源码/EXE 部署、两种数据库、HTTPS、开机自启、
   反向代理、备份恢复、升级回滚、安全清单、常见问题）
-- 新增 `CONTRIBUTING.md`、`SECURITY.md`、`LICENSE`（MIT）
+- 新增 `CONTRIBUTING.md`、`SECURITY.md`、`LICENSE`（木兰宽松许可证第 2 版 / Mulan PSL v2）
 - 新增 `docs/Node迁移可行性验证.md`（技术选型记录）
 
 [1.1.1]: https://github.com/1706691925/yunliaochat/releases/tag/v1.1.1

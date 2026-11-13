@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-3776ab?logo=python&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
+  <img alt="License" src="https://img.shields.io/badge/License-MulanPSL--2.0-blue">
   <img alt="Deps" src="https://img.shields.io/badge/runtime%20deps-zero-brightgreen">
   <img alt="DB" src="https://img.shields.io/badge/DB-SQLite%20%7C%20MySQL-blue">
   <img alt="Release" src="https://img.shields.io/github/v/tag/1706691925/yunliaochat?label=release">
@@ -219,7 +219,7 @@ def example(req):
 提交前跑一遍（CI 执行的是同一个脚本）：
 
 ```bash
-python tools/selfcheck.py           # 语法 + 零依赖约束 + 仓库卫生 + 冒烟测试
+python tools/selfcheck.py           # 语法 + 零依赖约束 + 仓库卫生 + 许可证 + 冒烟测试
 python tools/selfcheck.py --quick   # 只做静态检查
 ```
 
@@ -255,7 +255,11 @@ pyinstaller build.spec
 
 ## 许可证
 
-[MIT](LICENSE) —— 可自由商用、修改、闭源分发，保留版权声明即可。
+[木兰宽松许可证，第 2 版（Mulan PSL v2）](LICENSE) —— 可自由商用、修改、闭源分发，
+保留版权声明与许可证副本即可；同时授予专利许可。
+
+> 该协议由「中国开源云联盟」制定，中英文双语、以中文版为准，
+> 是国内首个由本土主导的开源许可证，并被 OSI 认证。
 
 ## 致谢
 

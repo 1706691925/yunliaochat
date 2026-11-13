@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2026 夜屿
+# Yunliao (云聊) is licensed under Mulan PSL v2.
+# You can use this software according to the terms and conditions of the Mulan PSL v2.
+# You may obtain a copy of Mulan PSL v2 at:
+#          http://license.coscl.org.cn/MulanPSL2
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+# See the Mulan PSL v2 for more details.
 """仓库自检脚本（CI 与本地通用，只依赖标准库）
 
 用法：
@@ -56,11 +65,11 @@ def check_syntax():
         except py_compile.PyCompileError as e:
             bad.append("%s: %s" % (p.relative_to(ROOT).as_posix(), e))
     if bad:
-        print("[1/4] 语法检查：失败 %d 个" % len(bad))
+        print("[1/5] 语法检查：失败 %d 个" % len(bad))
         for b in bad:
             print("      " + b)
         return False
-    print("[1/4] 语法检查：通过")
+    print("[1/5] 语法检查：通过")
     return True
 
 
@@ -76,11 +85,11 @@ def check_no_direct_driver():
         for m in DRIVER_IMPORT_RE.finditer(txt):
             bad.append("%s: %s" % (rel, m.group(0).strip()))
     if bad:
-        print("[2/4] 零依赖约束：有文件绕过 core/db.py")
+        print("[2/5] 零依赖约束：有文件绕过 core/db.py")
         for b in bad[:20]:
             print("      " + b)
         return False
-    print("[2/4] 零依赖约束：通过")
+    print("[2/5] 零依赖约束：通过")
     return True
 
 
@@ -98,11 +107,41 @@ def check_repo_hygiene():
         if p.suffix.lower() in BANNED_SUFFIX:
             bad.append(rel.as_posix())
     if bad:
-        print("[3/4] 仓库卫生：发现不应存在的文件 %d 个" % len(bad))
+        print("[3/5] 仓库卫生：发现不应存在的文件 %d 个" % len(bad))
         for b in bad[:20]:
             print("      " + b)
         return False
-    print("[3/4] 仓库卫生：通过")
+    print("[3/5] 仓库卫生：通过")
+    return True
+
+
+def check_license():
+    """许可证必须存在且是木兰宽松许可证第 2 版。
+
+    许可证文件属于易被误删/误改的内容（例如重新初始化仓库、
+    或换成别的协议后忘记同步 README 里的声明），因此单列一项检查。
+    """
+    lic = ROOT / "LICENSE"
+    if not lic.is_file():
+        print("[4/5] 许可证：缺少 LICENSE 文件")
+        return False
+    txt = lic.read_text(encoding="utf-8", errors="replace")
+    required = ("木兰宽松许可证", "Mulan Permissive Software License",
+                "license.coscl.org.cn/MulanPSL2")
+    missing = [k for k in required if k not in txt]
+    if missing:
+        print("[4/5] 许可证：LICENSE 不是完整的木兰宽松许可证第 2 版，缺少：%s"
+              % "、".join(missing))
+        return False
+    # README 里的许可证声明也应同步，避免自相矛盾
+    for name in ("README.md", "README.en.md"):
+        rd = ROOT / name
+        if rd.is_file():
+            rtxt = rd.read_text(encoding="utf-8", errors="replace")
+            if "Mulan" not in rtxt:
+                print("[4/5] 许可证：%s 未声明 Mulan PSL v2" % name)
+                return False
+    print("[4/5] 许可证：通过（Mulan PSL v2）")
     return True
 
 
@@ -139,7 +178,7 @@ def check_smoke(port=8199):
                 break
             time.sleep(0.5)
         if not ready:
-            print("[4/4] 冒烟测试：服务启动失败")
+            print("[5/5] 冒烟测试：服务启动失败")
             return False
 
         pw = None
@@ -149,7 +188,7 @@ def check_smoke(port=8199):
             if m:
                 pw = m.group(1)
         if not pw:
-            print("[4/4] 冒烟测试：未生成初始管理员密码")
+            print("[5/5] 冒烟测试：未生成初始管理员密码")
             return False
 
         base = "http://127.0.0.1:%d" % port
@@ -166,7 +205,7 @@ def check_smoke(port=8199):
 
         j = call("/api/auth/login", {"username": "admin", "password": pw})
         if not j.get("ok"):
-            print("[4/4] 冒烟测试：登录失败 %s" % j)
+            print("[5/5] 冒烟测试：登录失败 %s" % j)
             return False
         tok = j["data"]["token"]
 
@@ -176,19 +215,19 @@ def check_smoke(port=8199):
         for ep in eps:
             r = call(ep, token=tok)
             if not r.get("ok"):
-                print("[4/4] 冒烟测试：%s 返回异常 %s" % (ep, r))
+                print("[5/5] 冒烟测试：%s 返回异常 %s" % (ep, r))
                 return False
 
         d = call("/api/admin/dashboard", token=tok)["data"]
         if not d["server"]["db_engine"].startswith("SQLite"):
-            print("[4/4] 冒烟测试：引擎应为 SQLite，实际 %s" % d["server"]["db_engine"])
+            print("[5/5] 冒烟测试：引擎应为 SQLite，实际 %s" % d["server"]["db_engine"])
             return False
         if d["users"] < 8 or d["rooms"] < 4:
-            print("[4/4] 冒烟测试：种子数据不完整 users=%s rooms=%s"
+            print("[5/5] 冒烟测试：种子数据不完整 users=%s rooms=%s"
                   % (d["users"], d["rooms"]))
             return False
 
-        print("[4/4] 冒烟测试：通过（%d 个接口，引擎=%s，用户=%d，房间=%d）"
+        print("[5/5] 冒烟测试：通过（%d 个接口，引擎=%s，用户=%d，房间=%d）"
               % (len(eps), d["server"]["db_engine"], d["users"], d["rooms"]))
         return True
     finally:
@@ -204,9 +243,13 @@ def check_smoke(port=8199):
 
 def main():
     quick = "--quick" in sys.argv
-    results = [check_syntax(), check_no_direct_driver(), check_repo_hygiene()]
+    # 顺序与编号一致：1 语法 → 2 零依赖 → 3 仓库卫生 → 4 许可证 → 5 冒烟
+    results = [check_syntax(),
+               check_no_direct_driver(),
+               check_repo_hygiene(),
+               check_license()]
     if quick:
-        print("[4/4] 冒烟测试：已跳过（--quick）")
+        print("[5/5] 冒烟测试：已跳过（--quick）")
     else:
         results.append(check_smoke())
     ok = all(results)

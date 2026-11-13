@@ -11,14 +11,15 @@ python tools/selfcheck.py           # 全部检查（会起一个本地服务做
 python tools/selfcheck.py --quick   # 跳过冒烟测试，只做静态检查（更快）
 ```
 
-它会检查四件事：
+它会检查五件事：
 
 | 检查 | 内容 |
 |---|---|
 | 语法 | 全量 `py_compile` |
 | 零依赖约束 | 除 `core/db_sqlite.py` / `core/db_mysql.py` 等少数文件外，禁止直接 `import sqlite3` / `import pymysql` |
 | 仓库卫生 | `data/`、`cert/`、`*.db`、`*.pem`、`*.key` 等不应入库的文件 |
-| 冒烟测试 | 全新安装 → 登录 → 9 个核心接口 → 校验种子数据 |
+| 许可证 | `LICENSE` 必须是完整的木兰宽松许可证第 2 版，且 README 已同步声明 |
+| 冒烟测试 | 全新安装 → 登录 → 核心接口 → 校验种子数据 |
 
 失败时脚本会列出具体文件，退出码非 0。**CI 跑的是同一个脚本**，
 所以本地通过基本就等于 CI 通过。

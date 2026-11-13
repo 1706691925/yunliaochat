@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2026 夜屿
+# Yunliao (云聊) is licensed under Mulan PSL v2.
+# You can use this software according to the terms and conditions of the Mulan PSL v2.
+# You may obtain a copy of Mulan PSL v2 at:
+#          http://license.coscl.org.cn/MulanPSL2
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+# See the Mulan PSL v2 for more details.
 """
 HTTP 服务 v2 —— 重构版引擎
 - 自写 socket HTTP/1.1 解析（替代 http.server，头部解析更快、无每请求线程开销）

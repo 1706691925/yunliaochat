@@ -7,7 +7,7 @@
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-3776ab?logo=python&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
+  <img alt="License" src="https://img.shields.io/badge/License-MulanPSL--2.0-blue">
   <img alt="Deps" src="https://img.shields.io/badge/runtime%20deps-zero-brightgreen">
   <img alt="DB" src="https://img.shields.io/badge/DB-SQLite%20%7C%20MySQL-blue">
   <img alt="Release" src="https://img.shields.io/github/v/tag/1706691925/yunliaochat?label=release">
@@ -239,7 +239,7 @@ def example(req):
 Run before committing (CI runs the same script):
 
 ```bash
-python tools/selfcheck.py           # syntax + zero-dep rule + repo hygiene + smoke test
+python tools/selfcheck.py           # syntax + zero-dep rule + repo hygiene + license + smoke test
 python tools/selfcheck.py --quick   # static checks only
 ```
 
@@ -285,8 +285,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details (Chinese).
 
 ## License
 
-[MIT](LICENSE) — free for commercial use, modification and closed-source distribution,
-provided the copyright notice is retained.
+[Mulan Permissive Software License, Version 2 (Mulan PSL v2)](LICENSE) — free for commercial
+use, modification and closed-source distribution, provided you retain the copyright notice and
+supply recipients with a copy of the license. A patent license is granted as well.
+
+> Mulan PSL v2 is a Chinese open-source license authored by the China Open Source Cloud League.
+> It is published in both Chinese and English, with the Chinese version prevailing in case of
+> divergence, and has been approved by the OSI.
 
 ## Acknowledgements
 

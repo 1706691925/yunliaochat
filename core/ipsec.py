@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2026 夜屿
+# Yunliao (云聊) is licensed under Mulan PSL v2.
+# You can use this software according to the terms and conditions of the Mulan PSL v2.
+# You may obtain a copy of Mulan PSL v2 at:
+#          http://license.coscl.org.cn/MulanPSL2
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+# See the Mulan PSL v2 for more details.
 """IP 黑名单：支持单 IP / CIDR 网段 / 前缀通配，内存缓存 + DB 持久化。
 回环与本机链路地址豁免，防止管理员把自己锁在门外。"""
 import ipaddress

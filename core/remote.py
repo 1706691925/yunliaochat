@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2026 夜屿
+# Yunliao (云聊) is licensed under Mulan PSL v2.
+# You can use this software according to the terms and conditions of the Mulan PSL v2.
+# You may obtain a copy of Mulan PSL v2 at:
+#          http://license.coscl.org.cn/MulanPSL2
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+# See the Mulan PSL v2 for more details.
 """远程协助中枢：被控端注册、协助会话信令、画面帧转发、输入指令下发。
 
 安全设计（桌面级远控属高危能力，以下约束为强制项，不提供关闭开关）：

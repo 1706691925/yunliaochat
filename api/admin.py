@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2026 夜屿
+# Yunliao (云聊) is licensed under Mulan PSL v2.
+# You can use this software according to the terms and conditions of the Mulan PSL v2.
+# You may obtain a copy of Mulan PSL v2 at:
+#          http://license.coscl.org.cn/MulanPSL2
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+# EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+# MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+# See the Mulan PSL v2 for more details.
 """后台管理：仪表盘、用户、部门、房间、公告、日志、设置、敏感词、备份"""
 import csv
 import io
