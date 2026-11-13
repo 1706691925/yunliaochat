@@ -3,6 +3,28 @@
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 更早的开发期记录见 [CHANGELOG-20261103.md](CHANGELOG-20261103.md)。
 
+## [1.1.2] - 2026-11-13
+
+### 变更
+
+- **许可证由 MIT 改为木兰宽松许可证第 2 版（Mulan PSL v2）**。
+  该协议由「中国开源云联盟」制定、经 OSI 认证，中英双语且以中文版为准；
+  相比 MIT 增加了明确的**专利授权**条款，对使用者更友好。
+  宽松程度基本一致：可商用、可修改、可闭源分发，只需保留版权声明与许可证副本。
+- `LICENSE` 采用 SPDX 官方原文（中英双语，正文与附录逐字未改），
+  顶部加版权声明区注明版权人。
+- 为 52 个 Python 源文件补充 Mulan PSL v2 版权头。
+
+### 修复
+
+- **版本号收敛为单一来源**：此前 `1.1.1` 硬编码在 `app.py`、`api/admin.py`、
+  `client.py`、`installer.iss` 等 6 处，发版时容易漏改导致界面版本与实际标签不符。
+  现统一由 `core/__init__.py` 的 `__version__` 提供。
+- 自检脚本新增「许可证」检查项：LICENSE 缺失、不是完整 Mulan PSL v2、
+  顶部残留 `[Year]` 等模板占位符、或 README 未同步声明，均判为失败。
+
+> 注意：第三方组件（Ruffle、PyMySQL）的许可证保持不变，仍为各自原协议。
+
 ## [1.1.1] - 2026-11-13
 
 首个开源版本。
@@ -56,4 +78,5 @@
 - 新增 `CONTRIBUTING.md`、`SECURITY.md`、`LICENSE`（木兰宽松许可证第 2 版 / Mulan PSL v2）
 - 新增 `docs/Node迁移可行性验证.md`（技术选型记录）
 
+[1.1.2]: https://github.com/1706691925/yunliaochat/releases/tag/v1.1.2
 [1.1.1]: https://github.com/1706691925/yunliaochat/releases/tag/v1.1.1

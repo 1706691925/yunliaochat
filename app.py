@@ -24,6 +24,7 @@ import webbrowser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import core                                                    # noqa: E402  (__version__)
 from core import config, db, http, ipsec, realtime, security, unread, util, ws   # noqa: E402
 from core import app_ctx                              # noqa: E402
 import core.app_ctx                                              # noqa: E402
@@ -44,6 +45,9 @@ BANNER = r"""
 
 
 class Application(object):
+    # 版本号唯一来源在 core/__init__.py，这里只是便捷引用
+    version = core.__version__
+
     def __init__(self, data_dir=None, host=None, port=None, quiet=False):
         self.cfg = config.init(data_dir)
         if host:
@@ -638,7 +642,7 @@ class Application(object):
         https_srv = self._start_https(host)
         ips = self._local_ips()
         print(BANNER)
-        print("  版本：1.1.1")
+        print("  版本：%s" % self.version)
         print("  系统名称：%s" % self.cfg.get("site_name"))
         print("  数据目录：%s" % self.cfg.data_dir)
         print("  监听地址：%s:%d" % (host, port))

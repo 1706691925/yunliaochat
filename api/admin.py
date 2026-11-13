@@ -67,7 +67,7 @@ def dashboard(ctx):
                    "data_dir": config.CFG.data_dir,
                    "db_size": util.human_size(db.db_size()),
                    "db_engine": _db_engine_label(),
-                   "version": "1.1.1"}
+                   "version": app_ctx.APP.version}
     return d
 
 

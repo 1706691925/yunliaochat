@@ -8,7 +8,7 @@
 # EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 # MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 # See the Mulan PSL v2 for more details.
-"""云聊 —— Windows 桌面客户端 v1.1.1
+"""云聊 —— Windows 桌面客户端 v1.1.2
 
 - QQ 式系统消息推送：新消息时弹出托盘气泡（桌面弹窗）
 - 授权码免密登录：浏览器已登录用户在个人中心生成 6 位授权码，客户端输入即免密登录
@@ -401,7 +401,7 @@ START_HTML = r"""<!DOCTYPE html>
 <body>
 <div class="card">
   <h1>云聊 · 客户端</h1>
-  <p class="sub">连接服务器开始使用；也可输入授权码免密登录（v1.1.1）</p>
+  <p class="sub">连接服务器开始使用；也可输入授权码免密登录（v1.1.2）</p>
   <div class="sec">
     <b>服务器地址</b>
     <input id="srv" placeholder="如 http://10.0.0.5:8080（管理员提供）" autocomplete="off">
@@ -516,7 +516,7 @@ def main():
         tray = None
         _log("tray_skipped")
     else:
-        tray = TrayIcon(icon, "云聊 v1.1.1（消息推送 / 后台保活）",
+        tray = TrayIcon(icon, "云聊 v1.1.2（消息推送 / 后台保活）",
                         on_activate=on_activate, on_quit=quit_app)
         _log("tray_created")
     _WIN = win

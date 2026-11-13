@@ -32,7 +32,7 @@ assignees: ''
 | Python 版本 | 例如 3.12.14（`python --version`） |
 | 数据库引擎 | `sqlite` 或 `mysql`（看 `data/config.json` 的 `db_engine`） |
 | 访问方式 | 浏览器（哪个）/ 桌面客户端 / 远程桌面 |
-| 版本 | 例如 v1.1.1（`git describe --tags`） |
+| 版本 | 例如 v1.1.2（`git describe --tags`） |
 
 ## 报错信息
 
