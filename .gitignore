@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+
+# 运行时数据（数据库、上传文件、备份、日志、密钥、初始口令）
+# 这些内容因人而异，且可能含隐私信息，绝不入库
+data/
+data_cpp/
+*.db
+*.db-wal
+*.db-shm
+*.sql
+初始管理员密码.txt
+config.json
+
+# 证书与私钥：每个人用自己的域名/证书，绝不共用
+cert/
+*.pem
+*.key
+*.pfx
+*.crt
+*.csr
+
+# 构建产物
+build/
+dist/
+*.egg-info/
+__pycache__/
+
+# 随包二进制依赖：不入库
+# —— MySQL 免安装版共 864 MB，单个 mysqld.pdb 就 332 MB，
+#    既超过 GitHub 单文件 100 MB 上限，也会让 clone 变得极其缓慢。
+#    使用者按 docs/部署指南.md 用 tools/setup_mysql.py 自行准备。
+# —— pymysql 是纯 Python（约 100 KB）。若希望 MySQL 模式开箱可用，
+#    可把下面这条注释掉，让 vendor/pymysql 入库；默认不入库，
+#    以保持「克隆即跑 SQLite 模式、零依赖」的最小仓库体积。
+vendor/mysql/
+vendor/pymysql/
+vendor/*.dist-info/
+
+# 下载/临时目录
+_dl/
+_tmp/
+_diag_*/
+_fresh_*/
+
+# 测试与调试残留
+_srv*.log
+_read_verify.png
+_diag_pwd.py
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

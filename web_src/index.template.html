@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#f5f8ff">
+<title>云聊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='7' fill='%232878f0'/%3E%3Cpath d='M7 7.5A6 6 0 0 1 17 12l.4 3-3.3-1A6 6 0 1 1 7 7.5Z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/*__DSH_CSS__*/
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     登录页 · 严格对齐 设计稿登录页
+     ============================================================ -->
+<div id="login-page">
+  <main class="page">
+    <section class="visual" aria-label="产品介绍">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5.5A8.5 8.5 0 0 1 19.5 17L20 21l-4.4-1.4A8.5 8.5 0 1 1 5 5.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#2878f0"/><circle cx="12" cy="11.5" r="1.15" fill="#2878f0"/><circle cx="15.5" cy="11.5" r="1.15" fill="#2878f0"/></svg></div>
+        <div>云聊<small>让沟通更简单</small></div>
+      </div>
+      <div class="hero">
+        <div class="eyebrow"><i></i> 为高效协作而生</div>
+        <h1>连接团队，<span>高效协作</span></h1>
+        <p class="lead">一个平台，连接组织内的每一个人。让沟通更顺畅，让协作更简单，让每个想法都能快速抵达。</p>
+        <div class="features">
+          <div class="feature"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8 8 0 0 1-3.4-.8L4 20l1.3-4A7.4 7.4 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.5" stroke-linecap="round"/></svg></div><div><b>即时沟通</b><p>单聊、群聊、消息实时送达</p></div></div>
+          <div class="feature"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.3"/><path d="M2.8 20v-1.7A5.2 5.2 0 0 1 8 13h2a5.2 5.2 0 0 1 5.2 5.3V20M16 5.2a3.2 3.2 0 0 1 0 6.2M17 14h.8a3.5 3.5 0 0 1 3.4 3.5V20"/></svg></div><div><b>组织架构</b><p>快速找到同事与团队成员</p></div></div>
+          <div class="feature"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l4 4V21H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z"/><path d="M14.5 3.8V8h4M8 12h7M8 16h7"/></svg></div><div><b>文件共享</b><p>文档图片集中管理与分享</p></div></div>
+          <div class="feature"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 2.5 8 3v5.8c0 5-3.4 8.4-8 10.2-4.6-1.8-8-5.2-8-10.2V5.5l8-3Z"/><path d="m8.5 11.8 2.2 2.2 4.8-5"/></svg></div><div><b>安全可靠</b><p>为企业沟通预留安全边界</p></div></div>
+        </div>
+      </div>
+      <div class="preview" aria-hidden="true">
+        <div class="preview-window">
+          <div class="preview-top"><i class="dot2"></i><i class="dot2"></i><i class="dot2"></i><span style="font-size:10px;color:#8090aa;margin-left:8px">云聊 · 工作空间</span></div>
+          <div class="preview-body">
+            <div class="preview-nav"><div class="mini-icon">聊</div><div class="mini-icon">人</div><div class="mini-icon">▦</div><div class="mini-icon">⚙</div></div>
+            <div class="preview-chat"><div class="mini-title">产品讨论群 <span style="float:right;color:#91a3bd;font-weight:400">···</span></div><div class="bubble">大家好，项目进度同步一下～</div><div class="bubble me">首页视觉稿已经更新，欢迎反馈！</div><div class="bubble">收到，整体看起来很清爽 👍</div><div class="mini-line"></div><div class="mini-line short"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="signature">© 2026 云聊 · 专注企业协作的即时通讯平台</div>
+    </section>
+
+    <section class="login-side" aria-label="登录区域">
+      <div class="top-note">安全 · 高效 · 专业</div>
+      <div class="login-wrap">
+        <div class="login-brand">
+          <div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5.5A8.5 8.5 0 0 1 19.5 17L20 21l-4.4-1.4A8.5 8.5 0 1 1 5 5.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#2878f0"/><circle cx="12" cy="11.5" r="1.15" fill="#2878f0"/><circle cx="15.5" cy="11.5" r="1.15" fill="#2878f0"/></svg></div><span>云聊</span></div>
+          <p id="login-slogan">企业级即时通讯平台</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="登录方式">
+          <button class="tab ltab active" data-tab="login" role="tab" aria-selected="true" type="button">账号登录</button>
+          <button class="tab ltab" data-tab="register" role="tab" aria-selected="false" type="button">注册账号</button>
+          <button class="tab ltab" data-tab="code" role="tab" aria-selected="false" type="button">授权码登录</button>
+        </div>
+
+        <form id="login-form" autocomplete="on" onsubmit="return Auth.doLogin(event)">
+          <div class="field">
+            <label for="login-username">账号</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
+              <input id="login-username" name="username" type="text" placeholder="请输入账号或邮箱" autocomplete="username" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="login-password">密码</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4.5" y="10" width="15" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>
+              <input id="login-password" name="password" type="password" placeholder="请输入密码" autocomplete="current-password" required>
+              <button class="icon-button" type="button" id="togglePassword" aria-label="显示密码"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+            </div>
+          </div>
+          <div class="options"><label class="remember"><input id="remember" type="checkbox">记住账号</label><a href="#" id="forgotLink">忘记密码？</a></div>
+          <div class="login-msg" id="login-msg"></div>
+          <button class="primary" type="submit" id="login-btn">登 录</button>
+          <div class="divider">其他方式登录</div>
+          <div class="alt-login">
+            <button class="alt" type="button" data-method="企业微信" aria-label="企业微信登录"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.4 4.5c-4 0-7.1 2.7-7.1 6.1 0 1.9 1 3.5 2.7 4.6l-.7 2.5 2.8-1.4c.7.2 1.5.3 2.3.3 4 0 7.1-2.7 7.1-6.1s-3.1-6-7.1-6Zm-2.3 5.1a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Zm4.5 0a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Zm6.1 1.3c-3.4 0-6.1 2.2-6.1 5.1 0 2.8 2.7 5 6.1 5 .7 0 1.4-.1 2-.3l2.3 1.1-.6-2.1c1.4-.9 2.3-2.3 2.3-3.8 0-2.8-2.7-5-6-5Zm-1.9 4.2a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4Zm3.8 0a.7.7 0 1 1 0-1.4.7.7 0 0 1 0 1.4Z"/></svg></button>
+            <button class="alt" type="button" data-method="钉钉" aria-label="钉钉登录"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c-1.1 0-2 .9-2 2 0 2.7-.8 4.3-2.8 5.8-.8.6-1.2 1.6-.8 2.5l1.3 2.8-2.2 2.1c-.5.5-.2 1.3.5 1.4l4.1.5.8 2.1c.3.8 1.4.8 1.7 0l1.5-4.3 3.1-3.3c.7-.8.6-2-.3-2.6-2.5-1.7-3.9-3.8-3.9-7 0-1.1-.9-2-2-2Z"/></svg></button>
+            <button class="alt" type="button" data-method="企业 SSO" aria-label="企业单点登录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3Z"/><path d="m5 11 7 3.8 7-3.8M5 15l7 3.8 7-3.8"/></svg></button>
+          </div>
+        </form>
+
+        <form id="register-form" style="display:none" onsubmit="return Auth.doRegister(event)">
+          <div class="grid2">
+            <div class="field"><label>账号</label><div class="input-wrap"><input name="username" placeholder="字母/数字，≥3 位" autocomplete="username" required></div></div>
+            <div class="field"><label>昵称</label><div class="input-wrap"><input name="display_name" placeholder="聊天中展示的名字"></div></div>
+            <div class="field"><label>部门</label><div class="input-wrap"><input name="dept" placeholder="如：技术研发部"></div></div>
+            <div class="field"><label>岗位</label><div class="input-wrap"><input name="position" placeholder="如：工程师"></div></div>
+            <div class="field"><label>密码</label><div class="input-wrap"><input name="password" type="password" placeholder="≥8 位，含两类字符" autocomplete="new-password" required></div></div>
+            <div class="field"><label>确认密码</label><div class="input-wrap"><input name="password2" type="password" autocomplete="new-password" required></div></div>
+          </div>
+          <div class="login-msg" id="reg-msg"></div>
+          <button class="primary" type="submit">注 册</button>
+        </form>
+
+        <form id="code-form" style="display:none" onsubmit="return Auth.doCodeLogin(event)">
+          <p style="font-size:12px;color:#8797b1;line-height:1.8;margin-bottom:14px">在已登录浏览器的「个人中心 → Windows 客户端」处获取 6 位一次性授权码，输入后免密登录（无需密码）。</p>
+          <div class="field">
+            <label for="code-input">授权码</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg>
+              <input id="code-input" name="code" maxlength="6" placeholder="6 位数字授权码" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="login-msg" id="code-msg"></div>
+          <button class="primary" type="submit" id="code-btn">免密登录</button>
+          <div class="divider">客户端免密</div>
+          <div class="alt-login"><a class="alt" href="/downloads/云聊-客户端.exe" download title="下载 Windows 客户端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></a></div>
+        </form>
+
+        <p class="notice">登录即表示你同意 <a href="#" data-info="用户服务协议">用户服务协议</a> 与 <a href="#" data-info="隐私政策">隐私政策</a><br>© 2026 云聊 · 为团队协作而设计</p>
+        <div class="login-foot">
+          <span id="login-hint">纯内网部署 · 数据不出企业</span>
+          <span><a href="/downloads/云聊-客户端.exe" download>💻 下载 Windows 客户端</a></span>
+          <span id="dl-notify" style="display:none"><a href="/downloads/云聊提醒-安装包.exe" download>🔔 下载桌面提醒</a></span>
+          <span id="login-version">v1.1.1</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============================================================
+     主应用 · 严格对齐 设计稿主界面 三栏结构
+     ============================================================ -->
+<div id="app" class="app" style="display:none">
+  <aside class="rail" id="rail">
+    <div class="brandmark" id="brand-logo">云</div>
+    <button class="navbtn nav-item active" data-view="chat" title="消息" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a8 8 0 0 1-8 8 9 9 0 0 1-3.5-.7L4 20l1.3-4A8 8 0 1 1 20 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.5" stroke-linecap="round"/></svg><em class="badge" id="badge-chat" style="display:none"></em></button>
+    <button class="navbtn nav-item" data-view="contacts" title="通讯录" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4.5 5"/></svg></button>
+    <button class="navbtn nav-item" data-view="learn" title="学习中心" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5A1.5 1.5 0 0 0 20 18.5v-13Z"/></svg><em class="badge" id="badge-learn" style="display:none"></em></button>
+    <button class="navbtn nav-item" data-view="files" title="文件中心" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h3.1l2 2.4h7.9A2.5 2.5 0 0 1 21 9.9v7.6a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-10Z"/><path d="M3 11h18"/></svg></button>
+    <button class="navbtn nav-item" data-view="sites" title="常用网站" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3.2 9h17.6M3.2 15h17.6"/><path d="M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9Z"/></svg></button>
+    <button class="navbtn nav-item" data-view="games" id="nav-games" style="display:none" title="小游戏" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="7" width="19" height="10" rx="4.5"/><path d="M7.5 10v4M5.5 12h4M16 11h.01M18.5 13.5h.01" stroke-linecap="round"/></svg></button>
+    <button class="navbtn nav-item admin-only" data-view="admin" style="display:none" title="管理后台" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 20 6v5.5c0 4.8-3.3 8-8 9.5-4.7-1.5-8-4.7-8-9.5V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg></button>
+    <div class="rail-spacer"></div>
+    <button class="navbtn" id="desk-btn" title="桌面助手（新消息提醒 / 与网页同步登录）" type="button" onclick="App.desktopHelper()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 10.5l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="navbtn" id="notify-btn" title="通知中心" type="button" onclick="App.toggleNotify()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 6 1.5 6h-15S6 13 6 9Z"/><path d="M10 19a2.2 2.2 0 0 0 4 0"/></svg><em class="dot" id="notify-dot" style="display:none"></em></button>
+    <button class="navbtn nav-item" data-view="profile" title="个人中心" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg></button>
+    <button class="navbtn" id="theme-btn" title="切换深色 / 浅色" type="button" onclick="UI.toggleTheme()"><span class="ico-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A7.5 7.5 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></span><span class="ico-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg></span></button>
+    <button class="navbtn" title="退出登录" type="button" onclick="Auth.logout()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M9 12h11M17 8l4 4-4 4"/></svg></button>
+    <div class="avatar rail-avatar" id="rail-me" title="当前用户" onclick="App.go('profile')" style="cursor:pointer">我</div>
+  </aside>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidehead">
+      <div>
+        <h1 id="site-name">云聊</h1>
+        <div class="subtle" id="online-stat">在线 0 人</div>
+      </div>
+      <div class="head-actions">
+        <button class="iconbtn" title="创建房间" type="button" onclick="Chat.newRoom()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="iconbtn" id="patrol-btn" style="display:none" title="一键静默加入全部房间（隐身巡查）" type="button" onclick="Chat.patrolJoinAll()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg></button>
+      </div>
+    </div>
+    <label class="search" for="side-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="side-search" placeholder="搜索房间 / 消息 / 文件…" oninput="Chat.filterRooms(this.value)" onkeydown="if(event.key==='Enter')App.search(this.value)">
+    </label>
+    <div class="filterrow">
+      <button class="pill active" data-filter="all" type="button" onclick="Chat.setFilter('all',this)">全部</button>
+      <button class="pill" data-filter="joined" type="button" onclick="Chat.setFilter('joined',this)">已加入</button>
+      <button class="pill" data-filter="open" type="button" onclick="Chat.setFilter('open',this)">未加入</button>
+    </div>
+    <div class="sectionlabel"><span>最近会话</span><span id="room-count"></span></div>
+    <div class="conversation-list" id="room-list"></div>
+    <div class="sidefoot">
+      <div class="avatar" id="side-avatar">我</div>
+      <div class="me-info" onclick="App.go('profile')">
+        <b id="side-name">—</b>
+        <small id="side-role">—</small>
+      </div>
+      <button class="iconbtn" title="个人资料" type="button" onclick="App.go('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-linecap="round"/></svg></button>
+    </div>
+  </aside>
+
+  <div id="main">
+    <span id="view-title" hidden></span>
+    <span id="view-sub" hidden></span>
+
+    <!-- 聊天 -->
+    <section class="view chat" id="view-chat">
+      <header class="chathead">
+        <div class="chatidentity">
+          <div class="avatar" id="chat-avatar">聊</div>
+          <div>
+            <h2 id="chat-room-name">请选择房间</h2>
+            <p id="chat-room-topic"></p>
+          </div>
+        </div>
+        <div class="headactions">
+          <button class="iconbtn" title="成员" type="button" onclick="Chat.showMembers()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4.5 5"/></svg></button>
+          <button class="iconbtn" title="搜索消息" type="button" onclick="Chat.searchInRoom()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button>
+          <button class="iconbtn" title="刷新" type="button" onclick="Chat.refresh()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg></button>
+          <span class="conn" id="conn-state">连接中…</span>
+        </div>
+      </header>
+      <div class="messages" id="msg-list"></div>
+      <div class="typing" id="typing-bar"></div>
+      <div class="composer-wrap">
+        <div class="composer">
+          <div class="toolrow">
+            <button class="icon-btn" title="发送文件 / 图片" type="button" onclick="document.getElementById('file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5 12.6 19a4.6 4.6 0 0 1-6.5-6.5l7.6-7.6a3.1 3.1 0 0 1 4.4 4.4L10.5 17a1.6 1.6 0 0 1-2.3-2.3l6.6-6.6"/></svg></button>
+            <button class="icon-btn" id="shot-btn" title="截图发送（框选屏幕区域）" type="button" onclick="Chat.screenshot()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.2l1.1-1.6A1 1 0 0 1 9.6 4h4.8a1 1 0 0 1 .8.4L16.3 6h1.2A2.5 2.5 0 0 1 20 8.5v8A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-8Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+            <button class="icon-btn" id="emoji-btn" title="表情" type="button" onclick="Chat.emoji()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.6"/><path d="M8.6 14.2a4 4 0 0 0 6.8 0M9.3 9.5h.01M14.7 9.5h.01" stroke-linecap="round" stroke-width="2.2"/></svg></button>
+            <button class="icon-btn" title="@提醒" type="button" onclick="Chat.mention()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.6"/><path d="M15.6 8.4v5.2a2.6 2.6 0 0 0 5.2 0V12A8.8 8.8 0 1 0 12 20.8"/></svg></button>
+            <div class="toolspacer"></div>
+            <span class="subtle">Enter 发送</span>
+          </div>
+          <textarea id="msg-input" placeholder="输入消息，按 Enter 发送，Shift + Enter 换行…" onkeydown="Chat.onKey(event)" oninput="Chat.onInput()"></textarea>
+          <div class="sendrow composer-send">
+            <span class="hint" id="composer-hint">请注意工作信息安全</span>
+            <span class="attach-preview" id="attach-preview"></span>
+            <button class="sendbtn btn" type="button" onclick="Chat.send()">发送 ↗</button>
+          </div>
+        </div>
+      </div>
+      <input type="file" id="file-input" multiple style="display:none" onchange="Chat.onFile(event)">
+    </section>
+
+    <!-- 文件中心 -->
+    <section class="view" id="view-files" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">工作空间 / <b>文件中心</b></div>
+          <h1>文件中心</h1>
+        </div>
+        <div class="head-right">
+          <span class="muted">集中查看 · 上传下载 · 链接分享</span>
+        </div>
+      </header>
+      <div class="pagebody">
+        <div class="wrap" id="files-body"></div>
+      </div>
+    </section>
+
+    <!-- 常用网站 -->
+    <section class="view" id="view-sites" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">工作空间 / <b>常用网站</b></div>
+          <h1>常用网站</h1>
+        </div>
+        <div class="head-right">
+          <span class="muted" id="sites-stat">教学资源导航</span>
+        </div>
+      </header>
+      <div class="pagebody">
+        <div class="wrap" id="sites-body"></div>
+      </div>
+    </section>
+
+    <!-- 学习中心 -->
+    <section class="view" id="view-learn" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">学习空间 / <b>学习中心</b></div>
+          <h1>学习中心</h1>
+        </div>
+        <div class="head-right">
+          <span class="muted" id="learn-stat">课程 · 作业 · 考试</span>
+        </div>
+      </header>
+      <div class="pagebody">
+        <div class="wrap">
+          <div class="tabs learn-tabs" id="learn-tabs">
+            <button class="tab active" data-ltab="today" type="button" onclick="Learn.tab('today')">今日</button>
+            <button class="tab" data-ltab="courses" type="button" onclick="Learn.tab('courses')">课程</button>
+            <button class="tab" data-ltab="classes" type="button" onclick="Learn.tab('classes')">我的班级</button>
+            <button class="tab" data-ltab="homework" type="button" onclick="Learn.tab('homework')">作业</button>
+            <button class="tab" data-ltab="exams" type="button" onclick="Learn.tab('exams')">考试</button>
+            <button class="tab" data-ltab="materials" type="button" onclick="Learn.tab('materials')">资料库</button>
+            <button class="tab" data-ltab="lab" type="button" onclick="Learn.tab('lab')">题库刷题</button>
+            <button class="tab" data-ltab="mine" type="button" onclick="Learn.tab('mine')">我的学习</button>
+          </div>
+          <div id="learn-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 通讯录 -->
+    <section class="view" id="view-contacts" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">工作空间 / <b>通讯录</b></div>
+          <h1>通讯录</h1>
+        </div>
+        <div class="head-right">
+          <button class="iconbtn" title="刷新" type="button" onclick="App.contactsView()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg></button>
+        </div>
+      </header>
+      <div class="pagebody contacts-page">
+        <div class="wrap" id="contacts-body"></div>
+      </div>
+    </section>
+
+    <!-- 小游戏 -->
+    <section class="view" id="view-games" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">工作空间 / <b>小游戏</b></div>
+          <h1>小游戏</h1>
+        </div>
+        <div class="head-right"><span class="muted">休闲一刻 · 联机对战</span></div>
+      </header>
+      <div class="pagebody">
+        <div class="wrap" id="games-body"></div>
+      </div>
+    </section>
+
+    <!-- 个人中心 -->
+    <section class="view" id="view-profile" style="display:none">
+      <header class="pagehead">
+        <div>
+          <div class="crumb">工作空间 / <b>个人中心</b></div>
+          <h1>个人中心</h1>
+        </div>
+        <div class="head-right"><span class="muted">资料 · 安全 · 设备</span></div>
+      </header>
+      <div class="pagebody narrow">
+        <div class="wrap" id="profile-body"></div>
+      </div>
+    </section>
+
+    <!-- 管理后台 -->
+    <section class="view adminview" id="view-admin" style="display:none">
+      <div class="admin-shell">
+        <aside class="admin-side">
+          <div class="brand"><div class="logo">云</div><div class="brandtext">云聊<small>管理控制台</small></div></div>
+          <div class="workspace"><div class="workspace-icon">企</div><div><strong id="admin-site">云聊科技有限公司</strong><small>企业工作空间</small></div></div>
+          <div class="navlabel">工作台</div>
+          <button class="navitem active" data-atab="dash" type="button" onclick="Admin.tab('dash')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="14" width="8" height="7" rx="1.5"/></svg><span>数据总览</span></button>
+          <div class="navlabel">组织与成员</div>
+          <button class="navitem" data-atab="users" type="button" onclick="Admin.tab('users')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4.5 5"/></svg><span>用户管理</span></button>
+          <button class="navitem" data-atab="proreq" type="button" onclick="Admin.tab('proreq')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3.5h9l4 4V21H5z"/><path d="M13.5 3.8V8h4M8 13h6M8 17h4"/></svg><span>资料申请</span><em class="badge" id="proreq-badge" style="display:none"></em></button>
+          <button class="navitem" data-atab="rooms" type="button" onclick="Admin.tab('rooms')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 15a5 5 0 0 1 5 5"/></svg><span>房间管理</span></button>
+          <div class="navlabel">平台管理</div>
+          <button class="navitem" data-atab="msg" type="button" onclick="Admin.tab('msg')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a8 8 0 0 1-8 8 9 9 0 0 1-3.5-.7L4 20l1.3-4A8 8 0 1 1 20 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.5" stroke-linecap="round"/></svg><span>消息审核</span></button>
+          <button class="navitem" data-atab="announce" type="button" onclick="Admin.tab('announce')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10v4a2 2 0 0 0 2 2h2l7 4V4l-7 4H6a2 2 0 0 0-2 2Z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><span>公告</span></button>
+          <button class="navitem" data-atab="sites" type="button" onclick="Admin.tab('sites')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3.2 9h17.6M3.2 15h17.6"/><path d="M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9Z"/></svg><span>常用网站</span></button>
+          <button class="navitem" data-atab="logs" type="button" onclick="Admin.tab('logs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>审计日志</span></button>
+          <button class="navitem" data-atab="ipbl" type="button" onclick="Admin.tab('ipbl')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m5.5 5.5 13 13"/></svg><span>IP 访问控制</span></button>
+          <button class="navitem" data-atab="perms" type="button" onclick="Admin.tab('perms')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 20 6v5.5c0 4.8-3.3 8-8 9.5-4.7-1.5-8-4.7-8-9.5V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg><span>权限管理</span></button>
+          <button class="navitem" data-atab="remote" type="button" onclick="Admin.tab('remote')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>远程协助</span></button>
+          <button class="navitem" data-atab="db" type="button" onclick="Admin.tab('db')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg><span>数据库</span></button>
+          <button class="navitem" data-atab="settings" type="button" onclick="Admin.tab('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="m19 13 2 1-2 4-2-1-2 1v2h-5v-2l-2-1-2 1-2-4 2-1v-2l-2-1 2-4 2 1 2-1V4h5v2l2 1 2-1 2 4-2 1v2Z"/></svg><span>系统设置</span></button>
+          <div class="sidebar-spacer"></div>
+          <div class="sidebottom">
+            <div class="avatar" id="admin-me">管</div>
+            <div><strong id="admin-name">管理员</strong><small>超级管理员</small></div>
+          </div>
+        </aside>
+        <div class="admin-main">
+          <header class="admin-topbar">
+            <div class="crumb">云聊管理后台　/　<b id="admin-crumb">数据总览</b></div>
+            <div class="topright">
+              <button class="iconbtn" title="帮助" type="button" onclick="UI.toast('帮助中心入口待配置')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.6 2.3c-.7.4-1.2 1-1.2 1.9M12 17h.01" stroke-linecap="round"/></svg></button>
+              <button class="iconbtn" title="通知" type="button" onclick="App.toggleNotify()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 6 1.5 6h-15S6 13 6 9Z"/><path d="M10 19a2.2 2.2 0 0 0 4 0"/></svg></button>
+              <div class="admin-profile"><div class="avatar" id="admin-avatar">管</div><div><b id="admin-name-2">管理员</b><small>超级管理员</small></div></div>
+            </div>
+          </header>
+          <div class="content" id="admin-body"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 通知抽屉 -->
+  <div class="drawer" id="notify-drawer" style="display:none">
+    <div class="drawer-head">
+      <b>通知中心</b>
+      <span>
+        <button class="link" id="notify-perm-btn" type="button" onclick="UI.requestNotifyPerm(true)">🔔 开启浏览器通知</button>
+        <button class="link" type="button" onclick="App.readAllNotify()">全部已读</button>
+        <button class="iconbtn" type="button" onclick="App.toggleNotify()">✕</button>
+      </span>
+    </div>
+    <div class="drawer-ann" id="notify-ann"></div>
+    <div class="drawer-body" id="notify-list"></div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+<div id="modal-root"></div>
+
+<script>
+/*__DSH_JS__*/
+</script>
+</body>
+</html>

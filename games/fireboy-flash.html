@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>森林冰火人 · 原版 Flash（支持联机）</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: #10141c; color: #e8ecf2;
+    font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  header {
+    width: 100%; max-width: 1000px; padding: 12px 18px; display: flex;
+    align-items: center; justify-content: space-between; gap: 12px;
+  }
+  header h1 { font-size: 17px; margin: 0; }
+  .btn {
+    background: #1e2636; color: #e8ecf2; border: 1px solid #33415c;
+    border-radius: 8px; padding: 7px 14px; cursor: pointer; font-size: 13px;
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: #263149; }
+  .btn.primary { background: #2f6fed; border-color: #2f6fed; }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .mp-bar {
+    width: 100%; max-width: 1000px; display: flex; align-items: center; gap: 8px;
+    padding: 0 18px 10px; flex-wrap: wrap;
+  }
+  .mp-bar input {
+    background: #0e1219; border: 1px solid #3a4560; border-radius: 6px;
+    padding: 6px 10px; font-size: 14px; color: #e0e6ed; width: 110px;
+    text-align: center; text-transform: uppercase; letter-spacing: 2px;
+  }
+  .mp-bar input:focus { outline: none; border-color: #2f6fed; }
+  #mp-status { color: #8b95a8; font-size: 13px; margin-left: 4px; }
+  #mp-status.ok { color: #6fe3a5; }
+  #mp-status.err { color: #ff9b9b; }
+  .room-code {
+    font-size: 20px; font-weight: 700; color: #7fd0ff; letter-spacing: 4px;
+    background: #14213a; border: 1px solid #2b4a7a; border-radius: 8px; padding: 3px 12px;
+  }
+  .stage-wrap { width: 100%; max-width: 1000px; padding: 0 18px 26px; }
+  #stage {
+    width: 100%; height: 74vh; min-height: 420px; background: #000; border-radius: 10px;
+    border: 1px solid #33415c; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #stage ruffle-player, #stage embed, #stage object {
+    position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; border: 0;
+  }
+  .notice {
+    background: #2a2417; border: 1px solid #6b551c; color: #ffd97a;
+    border-radius: 10px; padding: 16px 20px; margin-top: 12px; font-size: 14px;
+    line-height: 1.8; max-width: 760px;
+  }
+  .notice code {
+    background: #1a1f2a; border: 1px solid #33415c; border-radius: 6px;
+    padding: 2px 8px; color: #7fd0ff; font-size: 13px;
+  }
+  .hint { color: #8b95a8; font-size: 12px; margin-top: 10px; line-height: 1.8; }
+  #countdown {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    pointer-events: none;   /* 绿灯时点击可以穿透到游戏，方便「绿灯亮后同时点」 */
+    background: rgba(6, 10, 18, .72); z-index: 20; font-size: 72px; font-weight: 800; color: #7fd0ff;
+    text-shadow: 0 6px 24px rgba(0,0,0,.6);
+  }
+  #countdown.go { color: #45e08a; text-shadow: 0 0 30px rgba(69,224,138,.8); }
+  .mp-log {
+    width: 100%; max-width: 1000px; padding: 0 18px 8px; font-size: 12px; color: #8b95a8;
+    max-height: 58px; overflow: auto; line-height: 1.7; padding-bottom: 2px;
+  }
+  .mp-log-item { padding: 1px 0; }
+  .mp-log-item b { color: #7fd0ff; font-weight: 600; }
+  #toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%);
+    background: #1b2434; border: 1px solid #33415c; color: #e8ecf2; border-radius: 10px;
+    padding: 9px 16px; font-size: 13px; display: none; z-index: 40; }
+</style>
+</head>
+<body>
+<header>
+  <h1>森林冰火人 · 原版 Flash（支持联机）</h1>
+  <div><a class="btn" href="chess.html">中国象棋</a></div>
+</header>
+
+<div class="mp-bar">
+  <button class="btn primary" id="btn-create" type="button">创建房间</button>
+  <input id="inp-room" type="text" maxlength="6" placeholder="房间号">
+  <button class="btn" id="btn-join" type="button">加入房间</button>
+  <span id="mp-status">未联机 · 单人可玩</span>
+  <span id="mp-code" style="display:none"></span>
+  <button class="btn" id="btn-copy" type="button" style="display:none">复制房间号</button>
+  <button class="btn primary" id="btn-ready" type="button" style="display:none">准备</button>
+  <button class="btn" id="btn-leave" type="button" style="display:none">离开房间</button>
+</div>
+<div class="mp-log" id="mp-log" style="display:none"></div>
+
+<div class="stage-wrap">
+  <div id="stage">
+    <div id="placeholder" style="text-align:center;padding:40px;color:#8b95a8;font-size:15px;line-height:2">
+      正在加载原版 Flash 游戏（Ruffle 模拟器）…
+    </div>
+    <div id="countdown"></div>
+  </div>
+
+  <div id="swf-missing" class="notice" style="display:none">
+    <b>未找到原版游戏文件 fireboy.swf</b><br>
+    请把 <b>森林冰火人</b> 原版 SWF 放到：<code>games/swf/fireboy.swf</code>，刷新本页即可。
+  </div>
+
+  <div class="hint">
+    单人：直接点 PLAY，火娃用方向键、冰娃用 A/W/D。<br>
+    联机：一人「创建房间」把 6 位房间号发给同伴，另一人输入房间号「加入房间」，双方各点一次「准备」；<br>
+    双方都准备好后自动 3、2、1 倒计时，<b>绿灯亮起时两人同时点 PLAY</b>；之后火娃方向键、冰娃 A、W、D，操作实时同步到对方画面。
+  </div>
+</div>
+<div id="toast"></div>
+
+<script src="ruffle/ruffle.js"></script>
+<script src="ruffle/core.ruffle.16d61072ac7fdc4d5013.js"></script>
+<script src="ruffle/core.ruffle.994eeef0a471a88cd0e3.js"></script>
+<script>
+(function () {
+  'use strict';
+  var SWF_URL = 'swf/fireboy.swf';
+  var stage = document.getElementById('stage');
+  var placeholder = document.getElementById('placeholder');
+  var missing = document.getElementById('swf-missing');
+  var cdEl = document.getElementById('countdown');
+  var statusEl = document.getElementById('mp-status');
+  var codeEl = document.getElementById('mp-code');
+  var toastEl = document.getElementById('toast');
+
+  var player = null;          // Ruffle 播放器
+  var ws = null, authed = false;
+  var room = '', role = '', relayOn = false;
+  window.__mp = { sent: 0, recv: 0, inj: 0 };
+  var KEYCODE = { ArrowLeft: 37, ArrowUp: 38, ArrowRight: 39, ArrowDown: 40,
+                  KeyA: 65, KeyD: 68, KeyW: 87, KeyS: 83, Space: 32, KeyR: 82, Enter: 13 };
+
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.style.display = 'block';
+    clearTimeout(toastEl._t); toastEl._t = setTimeout(function () { toastEl.style.display = 'none'; }, 2600);
+  }
+  function setStatus(text, cls) {
+    statusEl.textContent = text;
+    statusEl.className = cls || '';
+  }
+
+  /* ---------- Ruffle ---------- */
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = { autoplay: 'on', unmuteOverlay: 'hidden', letterbox: 'on', logLevel: 'error' };
+
+  function startRuffle() {
+    var rf = window.RufflePlayer;
+    var src = rf && rf.newest ? rf.newest() : null;
+    var maker = src && (typeof src.createPlayer === 'function' ? src.createPlayer
+              : (typeof src.newPlayer === 'function' ? src.newPlayer : null));
+    if (!maker) { setTimeout(startRuffle, 150); return; }
+    player = maker();
+    player.id = 'swf-player';
+    stage.appendChild(player);
+    placeholder.style.display = 'none';
+    player.ruffle().load(SWF_URL).catch(function () {
+      try { stage.removeChild(player); } catch (e) {}
+      placeholder.style.display = '';
+      placeholder.textContent = '';
+      missing.style.display = 'block';
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startRuffle);
+  else startRuffle();
+
+  /* ---------- 合成按键/点击（联机注入） ---------- */
+  function targets() {
+    var t = [player];
+    try {
+      var sh = player && player.shadowRoot;
+      if (sh) { t.push(sh); t.push(sh.getElementById('container')); t.push(sh.querySelector('canvas')); }
+    } catch (e) {}
+    return t.filter(Boolean);
+  }
+  function injectKey(code, down) {
+    var kc = KEYCODE[code] || 0;
+    if (!kc) return;
+    try { player.focus({ preventScroll: true }); } catch (e) {}
+    var key = code === 'Space' ? ' ' : (code.indexOf('Key') === 0 ? code.slice(3).toLowerCase()
+              : code.replace('Arrow', 'Arrow'));
+    var ev = new KeyboardEvent(down ? 'keydown' : 'keyup', {
+      key: key, code: code, bubbles: true, cancelable: true, composed: true, repeat: !!down
+    });
+    ['keyCode', 'which', 'charCode'].forEach(function (p) {
+      try { Object.defineProperty(ev, p, { get: function () { return kc; } }); } catch (e) {}
+    });
+    try { Object.defineProperty(ev, 'keyCode', { value: kc }); } catch (e) {}
+    targets().forEach(function (t) { try { t.dispatchEvent(ev); } catch (e) {} });
+  }
+  function clickStage() {
+    var cv = null;
+    try { cv = player.shadowRoot.querySelector('canvas'); } catch (e) {}
+    var box = (cv || player).getBoundingClientRect();
+    var x = box.left + box.width * 0.5, y = box.top + box.height * 0.70;
+    targets().forEach(function (t) {
+      ['mousedown', 'mouseup', 'click'].forEach(function (type) {
+        try {
+          t.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, composed: true,
+                                                clientX: x, clientY: y, button: 0, buttons: type === 'mousedown' ? 1 : 0 }));
+        } catch (e) {}
+      });
+    });
+  }
+
+  /* ---------- 本地按键 → 对手 ---------- */
+  function onKey(e, down) {
+    if (!relayOn || !e.isTrusted) return;      // 注入的事件（isTrusted=false）不再回传，避免回环
+    if (!KEYCODE[e.code]) return;
+    if (e.code === 'Space' || e.code.indexOf('Arrow') === 0) e.preventDefault();
+    send({ op: 'key', k: e.code, down: down ? 1 : 0 });
+  }
+  document.addEventListener('keydown', function (e) { onKey(e, true); }, true);
+  document.addEventListener('keyup', function (e) { onKey(e, false); }, true);
+
+  /* ---------- WebSocket 联机 ---------- */
+  function token() {
+    try { return localStorage.getItem('lc_token') || ''; } catch (e) { return ''; }
+  }
+  function send(d) {
+    if (ws && ws.readyState === 1) {
+      try { ws.send(JSON.stringify({ t: 'game', d: d })); window.__mp.sent++; } catch (e) {}
+    }
+  }
+  function connect(then) {
+    if (ws && ws.readyState === 1 && authed) { then && then(); return; }
+    var proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
+    try { ws = new WebSocket(proto + location.host + '/ws'); } catch (e) { setStatus('无法连接服务器', 'err'); return; }
+    ws.onopen = function () { ws.send(JSON.stringify({ t: 'auth', d: { token: token() } })); };
+    ws.onmessage = function (ev) {
+      var m;
+      try { m = JSON.parse(ev.data); } catch (e) { return; }
+      if (m.t === 'auth') {
+        if (m.d && m.d.ok) { authed = true; then && then(); }
+        else { setStatus('登录态无效，请在云聊里重新登录后再试', 'err'); }
+        return;
+      }
+      if (m.t !== 'game' || !m.d || m.d.g !== 'fireboy') return;
+      handleGame(m.d);
+    };
+    ws.onclose = function () {
+      authed = false; relayOn = false;
+      if (room) setStatus('连接已断开', 'err');
+    };
+  }
+
+  var myReady = false, peerReady = false, counting = false;
+
+  function addLog(text) {
+    var box = document.getElementById('mp-log');
+    if (!box) return;
+    box.style.display = '';
+    var el = document.createElement('div');
+    el.className = 'mp-log-item';
+    el.textContent = text;
+    box.insertBefore(el, box.firstChild);
+    while (box.children.length > 6) box.removeChild(box.lastChild);
+  }
+
+  function resetReady() {
+    myReady = false; peerReady = false; counting = false;
+    var b = document.getElementById('btn-ready');
+    if (b) { b.textContent = '准备'; b.disabled = false; b.style.display = room ? '' : 'none'; }
+  }
+
+  function refreshReady() {
+    var b = document.getElementById('btn-ready');
+    if (!b) return;
+    b.style.display = room ? '' : 'none';
+    b.disabled = myReady || counting;
+    b.textContent = myReady ? (peerReady ? '双方已准备' : '已准备（等待对方）') : (peerReady ? '准备（对方已准备）' : '准备');
+  }
+
+  function startCountdown() {
+    if (counting) return;
+    counting = true;
+    refreshReady();
+    addLog('双方已准备：3、2、1 后绿灯');
+    var n = 3;
+    cdEl.style.display = 'flex';
+    cdEl.classList.remove('go');
+    cdEl.textContent = n;
+    var iv = setInterval(function () {
+      n--;
+      if (n > 0) { cdEl.textContent = n; return; }
+      clearInterval(iv);
+      cdEl.textContent = 'GO';
+      cdEl.classList.add('go');
+      addLog('绿灯亮起：同时点击 PLAY 开始');
+      toast('绿灯！两人同时点 PLAY');
+      relayOn = true;
+      setTimeout(function () { cdEl.style.display = 'none'; cdEl.classList.remove('go'); }, 1400);
+    }, 1000);
+  }
+
+  function handleGame(d) {
+    if (d.ev === 'room') {
+      room = d.room || room;
+      role = d.role || role;
+      codeEl.textContent = room; codeEl.className = 'room-code'; codeEl.style.display = '';
+      document.getElementById('btn-copy').style.display = '';
+      document.getElementById('btn-leave').style.display = '';
+      document.getElementById('btn-create').disabled = true;
+      document.getElementById('btn-join').disabled = true;
+      resetReady();
+      addLog((role === 'host' ? '你创建了房间 ' : '你加入了房间 ') + room);
+      var players = d.players || [];
+      var others = players.filter(function (p) { return p.role !== role; });
+      if (others.length) {
+        setStatus('房间 ' + room + ' · 对手：' + others[0].name + '（' + (role === 'host' ? '你是房主' : '你是队员') + '）· 双方点「准备」开始', 'ok');
+        addLog(others[0].name + ' 已在房间中');
+      } else {
+        setStatus('房间 ' + room + ' · 等待对手加入…', '');
+      }
+      refreshReady();
+    } else if (d.ev === 'peer_join') {
+      var name = (d.peer && d.peer.name) || d.name || '对手';
+      setStatus('房间 ' + room + ' · 对手：' + name + '（' + (role === 'host' ? '你是房主' : '你是队员') + '）· 双方点「准备」开始', 'ok');
+      addLog(name + ' 加入了房间');
+      toast(name + ' 加入了房间');
+      peerReady = false;
+      refreshReady();
+    } else if (d.ev === 'peer_leave') {
+      setStatus('对手已离开房间', 'err');
+      addLog('对手离开了房间');
+      relayOn = false;
+      resetReady();
+      refreshReady();
+    } else if (d.ev === 'ready') {
+      peerReady = !!d.v;
+      if (peerReady) addLog('对手已准备');
+      else addLog('对手取消准备');
+      refreshReady();
+      if (myReady && peerReady) startCountdown();
+    } else if (d.ev === 'start') {
+      startCountdown();
+    } else if (d.ev === 'key') {
+      window.__mp.recv++;
+      if (relayOn) { injectKey(d.k, !!d.down); window.__mp.inj++; }
+    } else if (d.ev === 'error') {
+      setStatus(d.msg || '联机出错', 'err');
+    }
+  }
+
+  /* ---------- 房间操作 ---------- */
+  document.getElementById('btn-create').onclick = function () {
+    connect(function () { send({ g: 'fireboy', op: 'create' }); });
+  };
+  document.getElementById('btn-join').onclick = function () {
+    var code = (document.getElementById('inp-room').value || '').trim().toUpperCase();
+    if (code.length < 4) { toast('请输入房间号'); return; }
+    connect(function () { send({ g: 'fireboy', op: 'join', room: code }); });
+  };
+  document.getElementById('btn-ready').onclick = function () {
+    if (myReady) return;
+    myReady = true;
+    send({ g: 'fireboy', op: 'ready', v: 1 });
+    addLog('你已准备');
+    refreshReady();
+    if (peerReady) startCountdown();
+  };
+  document.getElementById('btn-copy').onclick = function () {
+    var done = function () { toast('房间号已复制：' + room); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(room).then(done).catch(function () { toast('复制失败，请手动选择房间号'); });
+    } else { toast('房间号：' + room); }
+  };
+  document.getElementById('btn-leave').onclick = function () {
+    send({ g: 'fireboy', op: 'leave' });
+    room = ''; role = ''; relayOn = false; resetReady();
+    codeEl.style.display = 'none';
+    document.getElementById('btn-copy').style.display = 'none';
+    document.getElementById('btn-leave').style.display = 'none';
+    document.getElementById('btn-ready').style.display = 'none';
+    document.getElementById('btn-create').disabled = false;
+    document.getElementById('btn-join').disabled = false;
+    setStatus('未联机 · 单人可玩', '');
+  };
+  window.addEventListener('beforeunload', function () {
+    try { if (room) send({ g: 'fireboy', op: 'leave' }); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

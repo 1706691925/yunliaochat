@@ -1,0 +1,179 @@
+
+/* ============================================================
+   学习中心（教师—学生场景）
+   复用现有 token 体系，不引入新色值，深色主题自动适配
+   ============================================================ */
+
+/* ---------- 今日待办四卡片 ---------- */
+.todo-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;margin-bottom:18px;
+}
+.todo-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 18px;cursor:pointer;transition:transform .16s,box-shadow .16s,border-color .16s;
+  position:relative;overflow:hidden;
+}
+.todo-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--primary)}
+.todo-card.urgent{border-left:3px solid var(--danger)}
+.todo-card.warn{border-left:3px solid var(--warn)}
+.tc-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);margin-bottom:10px}
+.tc-ico{font-size:17px;line-height:1}
+.tc-value{font-size:26px;font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.5px}
+.tc-sub{font-size:12px;color:var(--text-3);margin-top:7px;min-height:18px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tc-warn{color:var(--danger);font-weight:600;margin-left:6px}
+.tc-ok{color:var(--ok);font-weight:600}
+
+/* ---------- 学习中心标签页 ---------- */
+.learn-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;
+  border-bottom:1px solid var(--border);padding-bottom:0}
+.learn-tabs .tab{
+  background:transparent;border:0;border-bottom:2px solid transparent;
+  padding:9px 15px;font-size:14px;color:var(--text-2);cursor:pointer;
+  border-radius:8px 8px 0 0;transition:color .15s,background .15s,border-color .15s;
+}
+.learn-tabs .tab:hover{background:var(--panel-2);color:var(--text)}
+.learn-tabs .tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+
+/* ---------- 课程卡片 ---------- */
+.learn-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+.learn-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .16s,border-color .16s}
+.learn-card:hover{box-shadow:var(--shadow);border-color:var(--primary)}
+.learn-card .lc-cover{padding:18px 16px;color:#fff;position:relative;min-height:88px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.learn-card .lc-cover b{font-size:15px;line-height:1.35}
+.learn-card .lc-cover small{opacity:.86;font-size:12px}
+.learn-card .lc-body{padding:13px 16px;flex:1;display:flex;flex-direction:column;gap:9px}
+.learn-card .lc-desc{font-size:13px;color:var(--text-2);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:39px}
+.learn-card .lc-meta{display:flex;gap:11px;font-size:12px;color:var(--text-3);flex-wrap:wrap}
+.learn-card .lc-foot{padding:11px 16px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:8px}
+
+/* ---------- 进度条 ---------- */
+.lp-bar{height:6px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.lp-bar>i{display:block;height:100%;background:var(--ok);border-radius:99px;
+  transition:width .3s ease}
+.lp-label{font-size:12px;color:var(--text-3);margin-top:5px}
+
+/* ---------- 课时列表 ---------- */
+.lesson-row{display:flex;align-items:center;gap:12px;padding:13px 16px;
+  border-bottom:1px solid var(--border)}
+.lesson-row:last-child{border-bottom:0}
+.lesson-row:hover{background:var(--panel-2)}
+.lesson-ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;
+  justify-content:center;background:var(--primary-soft);color:var(--primary);flex-shrink:0;font-size:14px}
+.lesson-ico.done{background:rgba(32,183,134,.14);color:var(--ok)}
+.lesson-main{flex:1;min-width:0}
+.lesson-main b{display:block;font-size:14px;color:var(--text);font-weight:600}
+.lesson-main small{font-size:12px;color:var(--text-3)}
+.lesson-body{font-size:13px;color:var(--text-2);line-height:1.65;margin-top:7px;
+  white-space:pre-wrap;word-break:break-word}
+
+/* ---------- 考试 ---------- */
+.exam-timer{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--danger);
+  background:rgba(244,85,95,.10);padding:5px 12px;border-radius:8px}
+.exam-timer.safe{color:var(--ok);background:rgba(32,183,134,.10)}
+.exam-q{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 18px;margin-bottom:13px}
+.exam-q .qstem{font-size:14px;color:var(--text);line-height:1.65;margin-bottom:11px;font-weight:500}
+.exam-opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:9px;
+  cursor:pointer;transition:background .13s;font-size:13.5px;color:var(--text-2);line-height:1.55}
+.exam-opt:hover{background:var(--panel-2)}
+.exam-opt.sel{background:var(--primary-soft);color:var(--primary)}
+.exam-opt .qletter{font-weight:700;flex-shrink:0;width:19px}
+
+/* ---------- 作业提交状态 ---------- */
+.hw-state{display:inline-flex;align-items:center;gap:5px;font-size:12px;
+  padding:3px 9px;border-radius:99px;font-weight:600}
+.hw-state.ok{background:rgba(32,183,134,.13);color:var(--ok)}
+.hw-state.warn{background:rgba(245,166,35,.13);color:var(--warn)}
+.hw-state.danger{background:rgba(244,85,95,.12);color:var(--danger)}
+.hw-state.gray{background:var(--bg3);color:var(--text-3)}
+
+/* ---------- 统计卡 ---------- */
+.learn-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:12px;margin-bottom:18px}
+.lstat{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px 16px}
+.lstat b{display:block;font-size:23px;font-weight:700;color:var(--text);
+  line-height:1.2;letter-spacing:-.4px}
+.lstat span{display:block;font-size:12.5px;color:var(--text-3);margin-top:3px}
+
+/* ---------- 深色适配（仅补新组件，其余复用已有 token）---------- */
+html[data-theme="dark"] .todo-card{background:#141b26;border-color:#232e40}
+html[data-theme="dark"] .todo-card:hover{border-color:#3d6fb8}
+html[data-theme="dark"] .learn-card{background:#141b26;border-color:#232e40}
+html[data-theme="dark"] .learn-card .lc-foot{border-color:#1f2938}
+html[data-theme="dark"] .learn-card .lc-desc{color:#b6c3d6}
+html[data-theme="dark"] .learn-tabs{border-bottom-color:#243044}
+html[data-theme="dark"] .learn-tabs .tab{color:#93a2b8}
+html[data-theme="dark"] .learn-tabs .tab:hover{background:#18202e;color:#e7eefb}
+html[data-theme="dark"] .learn-tabs .tab.active{color:#7fb1ff;border-bottom-color:#5b9dff}
+html[data-theme="dark"] .lp-bar{background:#232e40}
+html[data-theme="dark"] .lesson-row{border-color:#1f2938}
+html[data-theme="dark"] .lesson-row:hover{background:#18202e}
+html[data-theme="dark"] .lesson-ico{background:#1d2b40;color:#9ec6ff}
+html[data-theme="dark"] .lesson-ico.done{background:#123a2c;color:#57d6a6}
+html[data-theme="dark"] .lesson-main b{color:#e2eaf6}
+html[data-theme="dark"] .exam-q{background:#141b26;border-color:#232e40}
+html[data-theme="dark"] .exam-opt{color:#b6c3d6}
+html[data-theme="dark"] .exam-opt:hover{background:#18202e}
+html[data-theme="dark"] .exam-opt.sel{background:#1d3a63;color:#8dbcff}
+html[data-theme="dark"] .lstat{background:#141b26;border-color:#232e40}
+html[data-theme="dark"] .hw-state.gray{background:#1f2837;color:#93a2b8}
+
+/* ---------- 成绩册 ---------- */
+.gb-wrap{overflow:auto;max-height:calc(100vh - 250px);padding:0}
+.gb-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.gb-table th,.gb-table td{padding:9px 11px;text-align:center;white-space:nowrap;
+  border-bottom:1px solid var(--border)}
+.gb-table thead th{position:sticky;top:0;z-index:2;background:var(--panel-2);
+  font-weight:600;color:var(--text-2);font-size:12.5px;border-bottom:1px solid var(--border)}
+.gb-table th.gb-name,.gb-table td.gb-name{position:sticky;left:0;z-index:1;
+  text-align:left;background:var(--panel);min-width:150px;border-right:1px solid var(--border)}
+.gb-table thead th.gb-name{z-index:3;background:var(--panel-2)}
+.gb-table td.gb-name b{display:block;font-size:13.5px;color:var(--text)}
+.gb-table td.gb-name small{font-size:11.5px;color:var(--text-3)}
+.gb-table tbody tr:hover td{background:var(--panel-2)}
+.gb-table tbody tr:hover td.gb-name{background:var(--panel-2)}
+.gb-table td.gb-none{color:var(--text-3)}
+.gb-table td.gb-pass{color:var(--ok);font-weight:600}
+.gb-table td.gb-fail{color:var(--danger);font-weight:600}
+
+/* ---------- 小屏适配 ---------- */
+@media (max-width:700px){
+  .todo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tc-value{font-size:21px}
+  .learn-cards{grid-template-columns:1fr}
+  .learn-tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .learn-tabs::-webkit-scrollbar{display:none}
+}
+
+/* ===== 题库刷题（嵌入知否平台）===== */
+.lab-bar{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:12px;
+  background:var(--panel-2,#f7faff);border:1px solid var(--border,#e5ebf5);border-radius:12px;
+  font-size:12.5px;color:var(--text-2);
+}
+.lab-bar b{color:var(--text-1);font-size:13px}
+.lab-url{color:var(--text-3);font-family:Menlo,Consolas,monospace;font-size:11.5px}
+.lab-warn{color:#c3414d;font-size:11.5px}
+.lab-dot{width:8px;height:8px;border-radius:50%;background:#c3ccd9;flex:none}
+.lab-dot.on{background:#12a67a;box-shadow:0 0 0 3px #12a67a22}
+.lab-dot.off{background:#e8734a;box-shadow:0 0 0 3px #e8734a22}
+.lab-frame-wrap{
+  border:1px solid var(--border,#e5ebf5);border-radius:12px;overflow:hidden;
+  background:#fff;min-height:620px;display:flex;align-items:center;justify-content:center;
+}
+.lab-frame{width:100%;height:calc(100vh - 260px);min-height:620px;border:0;display:block}
+html[data-theme="dark"] .lab-bar{background:#18202d;border-color:#2a3547}
+html[data-theme="dark"] .lab-frame-wrap{background:#101722;border-color:#2a3547}
+
+@media (max-width:700px){
+  .lab-bar{flex-wrap:wrap;gap:6px}
+  .lab-url{display:none}
+  .lab-frame{height:calc(100vh - 220px);min-height:480px}
+}

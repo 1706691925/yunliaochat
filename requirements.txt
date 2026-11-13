@@ -1,0 +1,16 @@
+# 运行时依赖说明（MySQL 版）
+#
+# 数据库驱动 PyMySQL 已随包内置在 vendor/pymysql（纯 Python，无编译扩展），
+# 因此运行时依旧不需要 pip install 任何东西。
+#
+# 只有这两个场景需要额外操作：
+#   1) 首次准备免安装 MySQL（已下载好 ZIP 时）：
+#        python tools/setup_mysql.py
+#      下载地址（官方 CDN 国内常被拒，用镜像）：
+#        https://mirrors.aliyun.com/mysql/MySQL-8.0/mysql-8.0.28-winx64.zip
+#   2) 打包成 EXE：
+#        pip install --no-index --find-links=offline-wheels pyinstaller
+#      或直接执行：构建EXE.bat（Windows） / 构建EXE.sh（Linux、macOS）
+#
+# 升级驱动（一般不需要，会覆盖 vendor/pymysql）：
+#        pip install --target vendor --upgrade pymysql
