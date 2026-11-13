@@ -32,16 +32,14 @@ dist/
 *.egg-info/
 __pycache__/
 
-# 随包二进制依赖：不入库
+# 随包二进制依赖
 # —— MySQL 免安装版共 864 MB，单个 mysqld.pdb 就 332 MB，
 #    既超过 GitHub 单文件 100 MB 上限，也会让 clone 变得极其缓慢。
 #    使用者按 docs/部署指南.md 用 tools/setup_mysql.py 自行准备。
-# —— pymysql 是纯 Python（约 100 KB）。若希望 MySQL 模式开箱可用，
-#    可把下面这条注释掉，让 vendor/pymysql 入库；默认不入库，
-#    以保持「克隆即跑 SQLite 模式、零依赖」的最小仓库体积。
 vendor/mysql/
-vendor/pymysql/
-vendor/*.dist-info/
+# —— pymysql 是纯 Python 驱动（约 100 KB），随仓库分发，
+#    这样克隆后切到 MySQL 模式即可直接用，无需 pip install。
+#    （vendor/pymysql/ 与 vendor/pymysql-*.dist-info/ 均已入库）
 
 # 下载/临时目录
 _dl/
