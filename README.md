@@ -9,7 +9,23 @@
   <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
   <img alt="Deps" src="https://img.shields.io/badge/runtime%20deps-zero-brightgreen">
   <img alt="DB" src="https://img.shields.io/badge/DB-SQLite%20%7C%20MySQL-blue">
+  <img alt="Release" src="https://img.shields.io/github/v/tag/1706691925/yunliaochat?label=release">
+  <img alt="Stars" src="https://img.shields.io/github/stars/1706691925/yunliaochat?style=flat">
 </p>
+
+## 界面预览
+
+<p align="center">
+  <img src="docs/ui/00-login.png" width="49%" alt="登录页">
+  <img src="docs/ui/03-admin.png" width="49%" alt="管理控制台">
+</p>
+<p align="center">
+  <img src="docs/ui/02-contacts.png" width="32%" alt="通讯录">
+  <img src="docs/ui/19-sites-dark.png" width="32%" alt="常用网站">
+  <img src="docs/ui/13-dash-dark.png" width="32%" alt="深色主题">
+</p>
+
+> 更多截图见 [`docs/ui/`](docs/ui/)（浅色 / 深色 × 云聊蓝 / 蓝粉 四种组合、后台各页面、聊天细节等）。
 
 ---
 
@@ -192,6 +208,15 @@ from api.base import route
 @route("/api/example", "GET")
 def example(req):
     return {"hello": "world"}
+```
+
+### 自检
+
+提交前跑一遍（CI 执行的是同一个脚本）：
+
+```bash
+python tools/selfcheck.py           # 语法 + 零依赖约束 + 仓库卫生 + 冒烟测试
+python tools/selfcheck.py --quick   # 只做静态检查
 ```
 
 ### 打包 EXE

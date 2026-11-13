@@ -4,15 +4,24 @@
 
 ## 提交前自检
 
-```bash
-# 1. 语法检查（必须全部通过）
-python -m py_compile $(find . -name "*.py" -not -path "./vendor/*" -not -path "./build/*")
-# Windows PowerShell：
-# Get-ChildItem -Recurse -Filter *.py | Where-Object { $_.FullName -notlike "*vendor*" } | ForEach-Object { python -m py_compile $_.FullName }
+提交前请跑一遍自检脚本，它覆盖了 CI 的全部检查项：
 
-# 2. 启动冒烟测试
-python app.py --port 8099 --no-browser
+```bash
+python tools/selfcheck.py           # 全部检查（会起一个本地服务做冒烟测试）
+python tools/selfcheck.py --quick   # 跳过冒烟测试，只做静态检查（更快）
 ```
+
+它会检查四件事：
+
+| 检查 | 内容 |
+|---|---|
+| 语法 | 全量 `py_compile` |
+| 零依赖约束 | 除 `core/db_sqlite.py` / `core/db_mysql.py` 等少数文件外，禁止直接 `import sqlite3` / `import pymysql` |
+| 仓库卫生 | `data/`、`cert/`、`*.db`、`*.pem`、`*.key` 等不应入库的文件 |
+| 冒烟测试 | 全新安装 → 登录 → 9 个核心接口 → 校验种子数据 |
+
+失败时脚本会列出具体文件，退出码非 0。**CI 跑的是同一个脚本**，
+所以本地通过基本就等于 CI 通过。
 
 ## 硬性约束
 

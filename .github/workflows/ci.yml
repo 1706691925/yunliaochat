@@ -1,0 +1,37 @@
+# 持续集成
+#
+# 检查项集中在 tools/selfcheck.py 里（本地也能跑：python tools/selfcheck.py），
+# 这里只负责在多个平台/版本上执行它，避免 CI 与本地两套逻辑。
+#
+# 全程不安装任何第三方包 —— 本项目定位就是「运行时零依赖」。
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.8", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: 自检（语法 / 零依赖 / 仓库卫生 / 冒烟测试）
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python tools/selfcheck.py
